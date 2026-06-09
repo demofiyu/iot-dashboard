@@ -350,7 +350,7 @@ export default function Dashboard() {
             </div>
 
             <div className="w-full h-[260px] sm:h-[340px] md:h-[380px] mt-4 font-mono text-[10px] sm:text-xs">
-              <ResponsiveContainer width="100%" h="100%">
+              <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={trends} margin={{ top: 10, right: 5, left: -25, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
                   <XAxis dataKey="label" stroke="#64748b" tickMargin={8} hide={typeof window !== 'undefined' && window.innerWidth < 640} />
