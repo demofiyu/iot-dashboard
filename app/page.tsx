@@ -106,13 +106,12 @@ export default function Dashboard() {
     <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-slate-100 p-3 sm:p-6 md:p-8">
       <div className="max-w-6xl mx-auto">
         
-        {/* Header */}
+        {/* Header - Sub-header text removed as requested */}
         <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white/10 pb-4 sm:pb-6 mb-6 sm:mb-8 gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight bg-gradient-to-r from-white via-slate-300 to-indigo-200 bg-clip-text text-transparent">
               CLIMATE MONITORING STATION
             </h1>
-            <p className="text-[10px] sm:text-xs text-indigo-400 font-mono tracking-widest mt-1 uppercase">NodeMCU + Supabase Integration</p>
           </div>
           <div className="flex items-center gap-3 bg-slate-950/60 border border-white/5 px-3 py-1.5 sm:py-2 rounded-xl self-start sm:self-auto">
             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -122,7 +121,7 @@ export default function Dashboard() {
           </div>
         </header>
 
-        {/* Tabs Control Menu */}
+        {/* Navigation Tabs */}
         <div className="grid grid-cols-3 gap-1 p-1 bg-slate-950/40 border border-white/5 rounded-xl max-w-md mb-6 sm:mb-8">
           {(['overview', 'trends', 'table'] as const).map((tab) => (
             <button
@@ -144,12 +143,8 @@ export default function Dashboard() {
           <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             
             {/* TEMPERATURE CARD */}
-            <div 
-              onClick={() => toggleFlip('temp')}
-              className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none"
-            >
+            <div onClick={() => toggleFlip('temp')} className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none cursor-pointer">
               <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards['temp'] ? '[transform:rotateY(180deg)]' : ''}`}>
-                {/* Front Panel */}
                 <div className="absolute w-full h-full [backface-visibility:hidden] bg-white text-slate-900 rounded-2xl p-5 sm:p-6 shadow-2xl border-l-[6px] border-rose-500 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
                     <p className="text-xs font-bold text-slate-400 tracking-wider uppercase">Temperature</p>
@@ -159,25 +154,16 @@ export default function Dashboard() {
                     {latest.temperature?.toFixed(1) || '0.0'}<span className="text-2xl sm:text-3xl font-light align-top ml-0.5">°C</span>
                   </h2>
                 </div>
-                {/* Back Panel */}
                 <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-bold text-rose-400 tracking-wider uppercase">Information</h4>
-                    <RotateCw className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Measures the current thermal intensity of the local environment captured by the on-site physical DHT22 sensor.
-                  </p>
-                  <p className="text-[10px] font-mono text-slate-500">Click card to return</p>
+                  <div className="flex justify-between items-start"><h4 className="text-xs font-bold text-rose-400 tracking-wider uppercase">Information</h4><RotateCw className="w-4 h-4 text-slate-500" /></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">Measures the current ambient thermal parameter level recorded via the digital single-bus DHT22 hardware module.</p>
+                  <p className="text-[10px] font-mono text-slate-500">Tap to flip back</p>
                 </div>
               </div>
             </div>
 
             {/* HUMIDITY CARD */}
-            <div 
-              onClick={() => toggleFlip('hum')}
-              className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none"
-            >
+            <div onClick={() => toggleFlip('hum')} className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none cursor-pointer">
               <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards['hum'] ? '[transform:rotateY(180deg)]' : ''}`}>
                 <div className="absolute w-full h-full [backface-visibility:hidden] bg-white text-slate-900 rounded-2xl p-5 sm:p-6 shadow-2xl border-l-[6px] border-emerald-400 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
@@ -189,23 +175,15 @@ export default function Dashboard() {
                   </h2>
                 </div>
                 <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-bold text-emerald-400 tracking-wider uppercase">Information</h4>
-                    <RotateCw className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Represents the relative percentage of water vapor content current suspended in the ambient atmosphere.
-                  </p>
-                  <p className="text-[10px] font-mono text-slate-500">Click card to return</p>
+                  <div className="flex justify-between items-start"><h4 className="text-xs font-bold text-emerald-400 tracking-wider uppercase">Information</h4><RotateCw className="w-4 h-4 text-slate-500" /></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">Represents the relative percentage distribution ratio of water vapor molecules currently suspended in the ecosystem.</p>
+                  <p className="text-[10px] font-mono text-slate-500">Tap to flip back</p>
                 </div>
               </div>
             </div>
 
             {/* HEAT INDEX CARD */}
-            <div 
-              onClick={() => toggleFlip('hi')}
-              className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none"
-            >
+            <div onClick={() => toggleFlip('hi')} className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none cursor-pointer">
               <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards['hi'] ? '[transform:rotateY(180deg)]' : ''}`}>
                 <div className="absolute w-full h-full [backface-visibility:hidden] bg-white text-slate-900 rounded-2xl p-5 sm:p-6 shadow-2xl border-l-[6px] border-amber-400 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
@@ -220,23 +198,15 @@ export default function Dashboard() {
                   </p>
                 </div>
                 <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-bold text-amber-400 tracking-wider uppercase">Information</h4>
-                    <RotateCw className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Combines air temperature parameters with relative humidity to calculate the human-perceived apparent thermal sensation.
-                  </p>
-                  <p className="text-[10px] font-mono text-slate-500">Click card to return</p>
+                  <div className="flex justify-between items-start"><h4 className="text-xs font-bold text-amber-400 tracking-wider uppercase">Information</h4><RotateCw className="w-4 h-4 text-slate-500" /></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">Combines true air temperature reading cycles with relative humidity to evaluate the human-perceived apparent thermal sensation boundary.</p>
+                  <p className="text-[10px] font-mono text-slate-500">Tap to flip back</p>
                 </div>
               </div>
             </div>
 
             {/* DEW POINT CARD */}
-            <div 
-              onClick={() => toggleFlip('dp')}
-              className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none"
-            >
+            <div onClick={() => toggleFlip('dp')} className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none cursor-pointer">
               <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards['dp'] ? '[transform:rotateY(180deg)]' : ''}`}>
                 <div className="absolute w-full h-full [backface-visibility:hidden] bg-white text-slate-900 rounded-2xl p-5 sm:p-6 shadow-2xl border-l-[6px] border-cyan-400 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
@@ -251,23 +221,15 @@ export default function Dashboard() {
                   </p>
                 </div>
                 <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-bold text-cyan-400 tracking-wider uppercase">Information</h4>
-                    <RotateCw className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    The explicit temperature mark to which current atmospheric air must be cooled down to precipitate into liquid water.
-                  </p>
-                  <p className="text-[10px] font-mono text-slate-500">Click card to return</p>
+                  <div className="flex justify-between items-start"><h4 className="text-xs font-bold text-cyan-400 tracking-wider uppercase">Information</h4><RotateCw className="w-4 h-4 text-slate-500" /></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">The clear physical cooling threshold markers where invisible airborne water vapor is forced to condense back into physical liquid macro droplets.</p>
+                  <p className="text-[10px] font-mono text-slate-500">Tap to flip back</p>
                 </div>
               </div>
             </div>
 
             {/* ABSOLUTE HUMIDITY CARD */}
-            <div 
-              onClick={() => toggleFlip('ah')}
-              className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none"
-            >
+            <div onClick={() => toggleFlip('ah')} className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none cursor-pointer">
               <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards['ah'] ? '[transform:rotateY(180deg)]' : ''}`}>
                 <div className="absolute w-full h-full [backface-visibility:hidden] bg-white text-slate-900 rounded-2xl p-5 sm:p-6 shadow-2xl border-l-[6px] border-indigo-400 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
@@ -280,23 +242,15 @@ export default function Dashboard() {
                   <p className="text-xs text-slate-400 font-medium border-t border-slate-100 pt-1.5">Density of water vapor</p>
                 </div>
                 <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-bold text-indigo-400 tracking-wider uppercase">Information</h4>
-                    <RotateCw className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Calculates the absolute weight/mass density of water vapor hanging within a single cubic meter volume of space.
-                  </p>
-                  <p className="text-[10px] font-mono text-slate-500">Click card to return</p>
+                  <div className="flex justify-between items-start"><h4 className="text-xs font-bold text-indigo-400 tracking-wider uppercase">Information</h4><RotateCw className="w-4 h-4 text-slate-500" /></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">Calculates the true mass density profile weight parameters of active water vapor per individual cubic meter boundary unit.</p>
+                  <p className="text-[10px] font-mono text-slate-500">Tap to flip back</p>
                 </div>
               </div>
             </div>
 
             {/* HUMIDEX COMFORT CARD */}
-            <div 
-              onClick={() => toggleFlip('hx')}
-              className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none"
-            >
+            <div onClick={() => toggleFlip('hx')} className="w-full h-[145px] sm:h-[165px] [perspective:1000px] select-none cursor-pointer">
               <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards['hx'] ? '[transform:rotateY(180deg)]' : ''}`}>
                 <div className="absolute w-full h-full [backface-visibility:hidden] bg-white text-slate-900 rounded-2xl p-5 sm:p-6 shadow-2xl border-l-[6px] border-purple-500 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
@@ -311,14 +265,9 @@ export default function Dashboard() {
                   </p>
                 </div>
                 <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-bold text-purple-400 tracking-wider uppercase">Information</h4>
-                    <RotateCw className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    An architectural index formula assessing atmospheric relative comfort levels felt by the human body.
-                  </p>
-                  <p className="text-[10px] font-mono text-slate-500">Click card to return</p>
+                  <div className="flex justify-between items-start"><h4 className="text-xs font-bold text-purple-400 tracking-wider uppercase">Information</h4><RotateCw className="w-4 h-4 text-slate-500" /></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">Canadian integration equation charting cumulative bio-comfort limits based on the integration of humidity saturation values.</p>
+                  <p className="text-[10px] font-mono text-slate-500">Tap to flip back</p>
                 </div>
               </div>
             </div>
@@ -410,6 +359,13 @@ export default function Dashboard() {
             </div>
           </section>
         )}
+
+        {/* Footer */}
+        <footer className="pt-12 pb-8 text-center border-t border-white/5 mt-12">
+          <p className="text-xs text-slate-500 font-mono tracking-wider uppercase">Nexus Quantum IoT Cluster</p>
+          <p className="text-[10px] text-slate-600 font-mono mt-1">Auto-updating active matrix • Supabase REST pipeline</p>
+        </footer>
+
       </div>
     </main>
   )
